@@ -79,12 +79,10 @@ function App() {
       <Navbar></Navbar>
       <Homepage></Homepage>
       <h1 className="label">Projects</h1>
-      <div className="projects">
-        
-        {/* Mapping the information from the database to separate notes */}
-          {projects.map((element) => (
-            <Projects title={element.title} content={element.content} />
-          ))}
+      <div className="projects">       
+        {projects.map((element) => (
+          <Projects title={element.title} content={element.content} />
+        ))}
       </div>
       <Contact></Contact>
       <Footer></Footer>
