@@ -1,4 +1,5 @@
 import './App.css';
+import { useState } from 'react';
 
 const projects = [
   { title: "Project 1", content: "Project 1 Description" },
@@ -41,10 +42,15 @@ function Homepage() {
   );
 }
 
-function Projects({ title, content }) {
+function Projects({ title, content, darkMode }) {
+  const [clicked, setClicked] = useState(false)
+
+  function handleClick() {
+    setClicked(!clicked)
+  }
   return (
     <>
-      <div className="project">
+      <div className={"project " + (darkMode && "dark")} onClick={handleClick}>
         <h3 className='label'>{title}</h3>
         <p className='label'>{content}</p>
       </div>
@@ -74,18 +80,29 @@ function Footer() {
 }
 
 function App() {
+  const [dark, setDark] = useState(false)
+
+  function handleClick() {
+    setDark(!dark)
+  }
+
   return (
     <div className="App">
       <Navbar></Navbar>
       <Homepage></Homepage>
       <h1 className="label">Projects</h1>
-      <div className="projects">       
+      <div>     
         {projects.map((element) => (
-          <Projects title={element.title} content={element.content} />
+          <Projects title={element.title} content={element.content} darkMode={dark}/>
         ))}
       </div>
       <Contact></Contact>
       <Footer></Footer>
+      <div>
+        <button onClick={handleClick}>
+          Dark Mode
+        </button>
+      </div>
     </div>
   );
 }
